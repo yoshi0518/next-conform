@@ -1,0 +1,19 @@
+{
+  "recommendations": [
+    "formulahendry.auto-close-tag",
+    "formulahendry.auto-rename-tag",
+    "anseki.vscode-color",
+    "usernamehw.errorlens",
+    "dbaeumer.vscode-eslint",
+    "github.vscode-github-actions",
+    "hashicorp.terraform",
+    "wix.vscode-import-cost",
+    "oderwat.indent-rainbow",
+    "Zignd.html-css-class-completion",
+    "esbenp.prettier-vscode",
+    "YoavBls.pretty-ts-errors",
+    "ajmnz.prisma-import",
+    "bradlc.vscode-tailwindcss",
+    "styled-components.vscode-styled-components"
+  ]
+}

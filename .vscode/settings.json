@@ -1,0 +1,58 @@
+{
+  "editor.tabSize": 2,
+  "editor.wordWrap": "off",
+  "editor.formatOnType": true,
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.unicodeHighlight.nonBasicASCII": false,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit"
+  },
+  "editor.quickSuggestions": {
+    "comments": false
+  },
+  "prettier.ignorePath": ".gitignore",
+  "search.exclude": {
+    "**/node_modules": true
+  },
+
+  "files.insertFinalNewline": true,
+  "files.trimFinalNewlines": true,
+  "files.trimTrailingWhitespace": true,
+  "files.eol": "\n",
+
+  "[javascript]": {
+    "editor.tabSize": 2,
+    "editor.insertSpaces": true,
+    "editor.formatOnSave": true
+  },
+
+  "[javascriptreact]": {
+    "editor.tabSize": 2,
+    "editor.insertSpaces": true,
+    "editor.formatOnSave": true
+  },
+
+  "[typescript]": {
+    "editor.tabSize": 2,
+    "editor.insertSpaces": true,
+    "editor.formatOnSave": true
+  },
+
+  "[typescriptreact]": {
+    "editor.tabSize": 2,
+    "editor.insertSpaces": true,
+    "editor.formatOnSave": true
+  },
+
+  "[json]": {
+    "editor.insertSpaces": true,
+    "editor.formatOnSave": true
+  },
+
+  "[prisma]": {
+    "editor.defaultFormatter": "ajmnz.prisma-import",
+    "editor.insertSpaces": true,
+    "editor.formatOnSave": true
+  }
+}
