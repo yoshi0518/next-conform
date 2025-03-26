@@ -1,18 +1,14 @@
-import type { FC } from 'react';
-import Link from 'next/link';
-import { env } from '@/env';
+import { Button } from '@/components/ui/button';
 
-import { HelloWorldLabel } from './_components/hello-world-label';
-
-const Home: FC = () => {
+const Home: React.FC = () => {
   return (
     <main>
       <div className="flex h-screen items-center justify-center">
         <div className="flex flex-col items-center">
-          <HelloWorldLabel />
-          <p>ENV：{env.ENV}</p>
-          <p>DEBUG：{env.DEBUG}</p>
-          <Link href="/about">About</Link>
+          <h1>Conform Test</h1>
+          <div>
+            <Button>Submit</Button>
+          </div>
         </div>
       </div>
     </main>
