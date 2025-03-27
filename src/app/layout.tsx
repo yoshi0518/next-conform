@@ -22,7 +22,7 @@ const RootLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
       className={notoSansJP.className}
     >
       <body className="">
-        <main className="flex h-screen flex-col items-center justify-center space-y-2 bg-slate-200 tracking-tighter">
+        <main className="flex h-screen flex-col items-center justify-center space-y-2 bg-slate-200">
           <div>{children}</div>
         </main>
       </body>
