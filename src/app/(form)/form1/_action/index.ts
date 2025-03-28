@@ -1,12 +1,12 @@
 'use server';
 
 import { redirect } from 'next/navigation';
-import { loginSchema } from '@/app/(form)/_types/login-form';
+import { formSchema } from '@/app/(form)/form1/_types';
 import { wait } from '@/lib/utils';
 import { parseWithZod } from '@conform-to/zod';
 
-export const loginAction = async (_: unknown, formData: FormData) => {
-  const submission = parseWithZod(formData, { schema: loginSchema });
+export const action = async (_: unknown, formData: FormData) => {
+  const submission = parseWithZod(formData, { schema: formSchema });
 
   // バリデーションエラー
   if (submission.status !== 'success') return submission.reply();

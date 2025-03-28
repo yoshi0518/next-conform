@@ -1,15 +1,15 @@
 'use client';
 
 import { useActionState } from 'react';
-import { loginAction } from '@/app/(form)/_action/login-form';
-import { loginSchema } from '@/app/(form)/_types/login-form';
+import { action } from '@/app/(form)/form1/_action';
+import { formSchema } from '@/app/(form)/form1/_types';
 import { Button, Input, Label } from '@/components/ui';
 import { getFormProps, getInputProps, useForm } from '@conform-to/react';
 import { getZodConstraint, parseWithZod } from '@conform-to/zod';
 import { FaSpinner } from 'react-icons/fa6';
 
-export const LoginForm: React.FC = () => {
-  const [lastResult, action, isPending] = useActionState(loginAction, null);
+export const Form: React.FC = () => {
+  const [lastResult, dispatch, isPending] = useActionState(action, null);
   const [form, fields] = useForm({
     // 初期値
     defaultValue: {
@@ -20,21 +20,21 @@ export const LoginForm: React.FC = () => {
     // action実行後の値
     lastResult,
     // バリデーションスキーマ
-    onValidate: ({ formData }) => parseWithZod(formData, { schema: loginSchema }),
+    onValidate: ({ formData }) => parseWithZod(formData, { schema: formSchema }),
     // 初回のバリデーション実行タイミング
     shouldValidate: 'onBlur',
     // 2回目以降のバリデーション実行タイミング
     shouldRevalidate: 'onInput',
     // Zodスキーマをもとに各フィールドのバリデーション属性を自動設定
-    constraint: getZodConstraint(loginSchema),
+    constraint: getZodConstraint(formSchema),
   });
 
   return (
     <div className="w-[360px] rounded-lg border bg-white shadow hover:shadow-md">
-      <header className="rounded-t-lg border-b bg-slate-600 p-2 text-white">Login Form</header>
+      <header className="rounded-t-lg border-b bg-slate-600 p-2 text-white">Form1</header>
       <form
         {...getFormProps(form)}
-        action={action}
+        action={dispatch}
         className="space-y-4 px-6 py-4"
       >
         <div className="space-y-1.5">
