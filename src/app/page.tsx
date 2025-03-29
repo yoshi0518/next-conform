@@ -20,6 +20,14 @@ const Home: React.FC = () => {
           確認画面あり
         </Link>
       </div>
+      <div>
+        <Link
+          href="/form3"
+          className="text-blue-500 underline underline-offset-2"
+        >
+          確認ダイアログあり
+        </Link>
+      </div>
     </div>
   );
 };
