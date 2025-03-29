@@ -1,10 +1,11 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { Button } from '@/app/(form)/form2/_component/button';
+import { Button, Label } from '@/components/ui';
 import { getFormProps, getInputProps, useField, useFormMetadata } from '@conform-to/react';
-import { Label } from '@radix-ui/react-label';
+import { FaSpinner } from 'react-icons/fa6';
 
 export const FormConfirm: React.FC = () => {
   // FormProvider経由で状態を取得
@@ -13,7 +14,7 @@ export const FormConfirm: React.FC = () => {
   const [password] = useField<string>('password');
   const [privacy] = useField<string>('privacy');
   const router = useRouter();
-
+  const [isPending, setIsPending] = useState(false);
   // ServerActionでバリデーションエラーがあった場合は入力ページへ遷移
   // replaceでブラウザに履歴を残さない
   useEffect(() => {
@@ -28,7 +29,10 @@ export const FormConfirm: React.FC = () => {
       <header className="rounded-t-lg border-b bg-slate-600 p-2 text-white">Form2(Confirm)</header>
       <form
         {...getFormProps(form)}
-        onSubmit={form.onSubmit}
+        onSubmit={(event) => {
+          setIsPending(true);
+          form.onSubmit(event);
+        }}
         className="space-y-4 px-6 py-4"
       >
         {/* === 画面表示 Start ===*/}
@@ -82,22 +86,25 @@ export const FormConfirm: React.FC = () => {
         {/* === Form送信用 End ===*/}
 
         <div className="flex justify-between">
-          <Button
-            className="w-36 cursor-pointer"
-            variant="outline"
-            type="submit"
-            name="intent"
-            value="modify"
-          >
-            修正
-          </Button>
+          <Link href="/form2">
+            <Button
+              className="w-36 cursor-pointer"
+              variant="outline"
+              type="button"
+              disabled={isPending}
+            >
+              修正
+            </Button>
+          </Link>
 
           <Button
             className="w-36 cursor-pointer"
             type="submit"
             name="intent"
             value="submit"
+            disabled={isPending}
           >
+            {isPending && <FaSpinner className="animate-spin" />}
             送信
           </Button>
         </div>
