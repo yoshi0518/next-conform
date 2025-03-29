@@ -18,6 +18,11 @@ export const action = async (_: unknown, formData: FormData) => {
   // DB処理
   await wait(2000);
 
+  // // サーバーエラーありパターン(自動で入力画面に戻る)
+  // return submission.reply({
+  //   formErrors: ['登録に失敗しました'],
+  // });
+
   // 送信完了ページへ遷移
   redirect('/form2/complete');
 };

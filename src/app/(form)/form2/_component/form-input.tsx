@@ -1,7 +1,6 @@
 'use client';
 
-import { Button } from '@/app/(form)/form2/_component/button';
-import { Input, Label } from '@/components/ui';
+import { Button, Input, Label } from '@/components/ui';
 import { getFormProps, getInputProps, useField, useFormMetadata } from '@conform-to/react';
 
 export const FormInput: React.FC = () => {

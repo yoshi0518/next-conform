@@ -27,6 +27,7 @@ export const FormProvider: React.FC<{ children: React.ReactNode }> = ({ children
     shouldRevalidate: 'onInput',
     // Zodスキーマをもとに各フィールドのバリデーション属性を自動設定
     constraint: getZodConstraint(formSchema),
+    // Submitイベント
     onSubmit: (event, { formData }) => {
       event.preventDefault();
 
