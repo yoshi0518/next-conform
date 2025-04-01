@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useTransition } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { Button, Label } from '@/components/ui';
@@ -14,12 +14,11 @@ export const FormConfirm: React.FC = () => {
   const [password] = useField<string>('password');
   const [privacy] = useField<string>('privacy');
   const router = useRouter();
-  const [isPending, setIsPending] = useState(false);
+  const [isPending, startTransition] = useTransition();
   // ServerActionでバリデーションエラーがあった場合は入力ページへ遷移
   // replaceでブラウザに履歴を残さない
   useEffect(() => {
     if (form.status === 'error') {
-      console.log('useEffect');
       router.replace('/form2');
     }
   }, [form.status, router]);
@@ -30,8 +29,9 @@ export const FormConfirm: React.FC = () => {
       <form
         {...getFormProps(form)}
         onSubmit={(event) => {
-          setIsPending(true);
-          form.onSubmit(event);
+          startTransition(() => {
+            form.onSubmit(event);
+          });
         }}
         className="space-y-4 px-6 py-4"
       >
