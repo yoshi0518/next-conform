@@ -3,8 +3,8 @@
 import * as React from 'react';
 import { buttonVariants } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { DayPicker } from 'react-day-picker';
+import { LuChevronLeft, LuChevronRight } from 'react-icons/lu';
 
 function Calendar({ className, classNames, showOutsideDays = true, ...props }: React.ComponentProps<typeof DayPicker>) {
   return (
@@ -47,13 +47,13 @@ function Calendar({ className, classNames, showOutsideDays = true, ...props }: R
       }}
       components={{
         IconLeft: ({ className, ...props }) => (
-          <ChevronLeft
+          <LuChevronLeft
             className={cn('size-4', className)}
             {...props}
           />
         ),
         IconRight: ({ className, ...props }) => (
-          <ChevronRight
+          <LuChevronRight
             className={cn('size-4', className)}
             {...props}
           />
