@@ -11,9 +11,9 @@ export const action = async (_: unknown, formData: FormData) => {
   // バリデーションエラー
   if (submission.status !== 'success') return submission.reply();
 
-  const { text, email, search, url } = Object.fromEntries(formData);
-  console.log('=== Post Data ===');
-  console.log({ text, email, search, url });
+  const { text, email, search, url, tel, range, date } = submission.value;
+  console.log('=== Submission Data ===');
+  console.log({ text, email, search, url, tel, range, date });
 
   // DB処理
   await wait(2000);

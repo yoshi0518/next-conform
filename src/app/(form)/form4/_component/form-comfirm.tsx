@@ -14,6 +14,9 @@ export const FormConfirm: React.FC = () => {
   const [email] = useField<string>('email');
   const [search] = useField<string>('search');
   const [url] = useField<string>('url');
+  const [tel] = useField<string>('tel');
+  const [range] = useField<string>('range');
+  const [date] = useField<string>('date');
   const router = useRouter();
   const [isPending, startTransition] = useTransition();
   // ServerActionでバリデーションエラーがあった場合は入力ページへ遷移
@@ -76,6 +79,36 @@ export const FormConfirm: React.FC = () => {
           </Label>
           <p>{url.value}</p>
         </div>
+
+        <div className="space-y-1.5">
+          <Label
+            htmlFor={tel.id}
+            className="text-sm font-semibold"
+          >
+            TEL(tel)
+          </Label>
+          <p>{tel.value}</p>
+        </div>
+
+        <div className="space-y-1.5">
+          <Label
+            htmlFor={range.id}
+            className="text-sm font-semibold"
+          >
+            範囲(range)
+          </Label>
+          <p>{range.value}</p>
+        </div>
+
+        <div className="space-y-1.5">
+          <Label
+            htmlFor={date.id}
+            className="text-sm font-semibold"
+          >
+            日付(date)
+          </Label>
+          <p>{date.value}</p>
+        </div>
         {/* === 画面表示 End ===*/}
 
         {/* === Form送信用 Start ===*/}
@@ -101,6 +134,24 @@ export const FormConfirm: React.FC = () => {
           {...getInputProps(url, { type: 'hidden' })}
           key={url.key}
           defaultValue={url.value}
+        />
+
+        <input
+          {...getInputProps(tel, { type: 'hidden' })}
+          key={tel.key}
+          defaultValue={tel.value}
+        />
+
+        <input
+          {...getInputProps(range, { type: 'hidden' })}
+          key={range.key}
+          defaultValue={range.value}
+        />
+
+        <input
+          {...getInputProps(date, { type: 'hidden' })}
+          key={date.key}
+          defaultValue={date.value}
         />
         {/* === Form送信用 End ===*/}
 

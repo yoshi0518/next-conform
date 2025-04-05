@@ -14,3 +14,5 @@ export {
   AlertDialogAction,
   AlertDialogCancel,
 } from './alert-dialog';
+export { Calendar } from './calendar';
+export { Popover, PopoverTrigger, PopoverContent, PopoverAnchor } from './popover';
