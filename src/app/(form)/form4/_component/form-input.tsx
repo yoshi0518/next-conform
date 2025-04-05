@@ -10,6 +10,9 @@ export const FormInput: React.FC = () => {
   const [email] = useField<string>('email');
   const [search] = useField<string>('search');
   const [url] = useField<string>('url');
+  const [tel] = useField<string>('tel');
+  const [range] = useField<number>('range');
+  const [date] = useField<Date>('date');
 
   return (
     <div className="w-[360px] rounded-lg border bg-white shadow hover:shadow-md">
@@ -72,10 +75,62 @@ export const FormInput: React.FC = () => {
             defaultValue={url.value ?? url.initialValue}
           />
           <p
-            id={text.errorId}
+            id={url.errorId}
             className="text-sm text-red-500"
           >
             {url.errors}
+          </p>
+        </div>
+
+        <div className="space-y-1.5">
+          <Label htmlFor={tel.id}>TEL(tel)</Label>
+          <Input
+            {...getInputProps(tel, { type: 'tel' })}
+            key={tel.key}
+            defaultValue={tel.value ?? tel.initialValue}
+          />
+          <p
+            id={tel.errorId}
+            className="text-sm text-red-500"
+          >
+            {tel.errors}
+          </p>
+        </div>
+
+        <div className="space-y-1.5">
+          <Label
+            htmlFor={range.id}
+            className="flex justify-between"
+          >
+            範囲(range)
+            <span>{range.value}</span>
+          </Label>
+          <Input
+            {...getInputProps(range, { type: 'range' })}
+            key={range.key}
+            defaultValue={range.value ?? range.initialValue}
+          />
+          <p
+            id={range.errorId}
+            className="text-sm text-red-500"
+          >
+            {range.errors}
+          </p>
+        </div>
+
+        <div className="space-y-1.5">
+          <Label htmlFor={date.id}>日付(date)</Label>
+          <Input
+            {...getInputProps(date, { type: 'date' })}
+            key={date.key}
+            defaultValue={date.value ?? date.initialValue}
+            className="w-min"
+          />
+          <p
+            id={date.errorId}
+            className="text-sm text-red-500"
+          >
+            {date.errors}
           </p>
         </div>
 

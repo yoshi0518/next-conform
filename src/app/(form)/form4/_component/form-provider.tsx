@@ -6,6 +6,7 @@ import { action } from '@/app/(form)/form4/_action';
 import { formSchema } from '@/app/(form)/form4/_types';
 import { FormProvider as ConformFormProvider, useForm } from '@conform-to/react';
 import { getZodConstraint, parseWithZod } from '@conform-to/zod';
+import { format } from 'date-fns';
 
 export const FormProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const router = useRouter();
@@ -17,6 +18,9 @@ export const FormProvider: React.FC<{ children: React.ReactNode }> = ({ children
       email: 'test@example.com',
       search: 'keyword',
       url: 'https://example.com',
+      tel: '090-1234-5678',
+      range: 50,
+      date: format(new Date(), 'yyyy-MM-dd'),
     },
     // action実行後の値
     lastResult,
