@@ -13,6 +13,10 @@ export const FormInput: React.FC = () => {
   const [tel] = useField<string>('tel');
   const [range] = useField<number>('range');
   const [date] = useField<Date>('date');
+  const [datetime] = useField<string>('datetime');
+  const [time] = useField<string>('time');
+  const [month] = useField<string>('month');
+  const [week] = useField<string>('week');
 
   return (
     <div className="w-[360px] rounded-lg border bg-white shadow hover:shadow-md">
@@ -131,6 +135,70 @@ export const FormInput: React.FC = () => {
             className="text-sm text-red-500"
           >
             {date.errors}
+          </p>
+        </div>
+
+        <div className="space-y-1.5">
+          <Label htmlFor={datetime.id}>日時(datetime-local)</Label>
+          <Input
+            {...getInputProps(datetime, { type: 'datetime-local' })}
+            key={datetime.key}
+            defaultValue={datetime.value ?? datetime.initialValue}
+            className="w-min"
+          />
+          <p
+            id={datetime.errorId}
+            className="text-sm text-red-500"
+          >
+            {datetime.errors}
+          </p>
+        </div>
+
+        <div className="space-y-1.5">
+          <Label htmlFor={time.id}>時間(time)</Label>
+          <Input
+            {...getInputProps(time, { type: 'time' })}
+            key={time.key}
+            defaultValue={time.value ?? time.initialValue}
+            className="w-min"
+          />
+          <p
+            id={time.errorId}
+            className="text-sm text-red-500"
+          >
+            {time.errors}
+          </p>
+        </div>
+
+        <div className="space-y-1.5">
+          <Label htmlFor={month.id}>年月(month)</Label>
+          <Input
+            {...getInputProps(month, { type: 'month' })}
+            key={month.key}
+            defaultValue={month.value ?? month.initialValue}
+            className="w-min"
+          />
+          <p
+            id={month.errorId}
+            className="text-sm text-red-500"
+          >
+            {month.errors}
+          </p>
+        </div>
+
+        <div className="space-y-1.5">
+          <Label htmlFor={month.id}>週(week)</Label>
+          <Input
+            {...getInputProps(week, { type: 'week' })}
+            key={week.key}
+            defaultValue={week.value ?? week.initialValue}
+            className="w-min"
+          />
+          <p
+            id={week.errorId}
+            className="text-sm text-red-500"
+          >
+            {week.errors}
           </p>
         </div>
 
