@@ -17,6 +17,11 @@ export const FormConfirm: React.FC = () => {
   const [tel] = useField<string>('tel');
   const [range] = useField<string>('range');
   const [date] = useField<string>('date');
+  const [datetime] = useField<string>('datetime');
+  const [time] = useField<string>('time');
+  const [month] = useField<string>('month');
+  const [week] = useField<string>('week');
+
   const router = useRouter();
   const [isPending, startTransition] = useTransition();
   // ServerActionでバリデーションエラーがあった場合は入力ページへ遷移
@@ -109,6 +114,46 @@ export const FormConfirm: React.FC = () => {
           </Label>
           <p>{date.value}</p>
         </div>
+
+        <div className="space-y-1.5">
+          <Label
+            htmlFor={datetime.id}
+            className="text-sm font-semibold"
+          >
+            日時(datetime-local)
+          </Label>
+          <p>{datetime.value}</p>
+        </div>
+
+        <div className="space-y-1.5">
+          <Label
+            htmlFor={time.id}
+            className="text-sm font-semibold"
+          >
+            時間(time-time)
+          </Label>
+          <p>{time.value}</p>
+        </div>
+
+        <div className="space-y-1.5">
+          <Label
+            htmlFor={month.id}
+            className="text-sm font-semibold"
+          >
+            年月(month)
+          </Label>
+          <p>{month.value}</p>
+        </div>
+
+        <div className="space-y-1.5">
+          <Label
+            htmlFor={week.id}
+            className="text-sm font-semibold"
+          >
+            週(week)
+          </Label>
+          <p>{week.value}</p>
+        </div>
         {/* === 画面表示 End ===*/}
 
         {/* === Form送信用 Start ===*/}
@@ -152,6 +197,30 @@ export const FormConfirm: React.FC = () => {
           {...getInputProps(date, { type: 'hidden' })}
           key={date.key}
           defaultValue={date.value}
+        />
+
+        <input
+          {...getInputProps(datetime, { type: 'hidden' })}
+          key={datetime.key}
+          defaultValue={datetime.value}
+        />
+
+        <input
+          {...getInputProps(time, { type: 'hidden' })}
+          key={time.key}
+          defaultValue={time.value}
+        />
+
+        <input
+          {...getInputProps(month, { type: 'hidden' })}
+          key={month.key}
+          defaultValue={month.value}
+        />
+
+        <input
+          {...getInputProps(week, { type: 'hidden' })}
+          key={week.key}
+          defaultValue={week.value}
         />
         {/* === Form送信用 End ===*/}
 

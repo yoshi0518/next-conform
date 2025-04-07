@@ -21,6 +21,10 @@ export const FormProvider: React.FC<{ children: React.ReactNode }> = ({ children
       tel: '090-1234-5678',
       range: 50,
       date: format(new Date(), 'yyyy-MM-dd'),
+      datetime: format(new Date(), 'yyyy-MM-dd HH:mm:ss'),
+      time: format(new Date(), 'HH:mm:ss'),
+      month: format(new Date(), 'yyyy-MM'),
+      week: null,
     },
     // action実行後の値
     lastResult,

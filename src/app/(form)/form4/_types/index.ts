@@ -11,6 +11,10 @@ export const formSchema = z.object({
     .transform((value) => value.replaceAll('-', '')),
   range: z.number().min(0).max(100),
   date: z.date(),
+  datetime: z.string().refine((value) => !Number.isNaN(new Date(value).getTime())),
+  time: z.string().time(),
+  month: z.string().refine((value) => !Number.isNaN(new Date(value).getMonth())),
+  week: z.string(),
 });
 
 export type formType = z.infer<typeof formSchema>;
