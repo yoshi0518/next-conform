@@ -21,6 +21,7 @@ export const FormConfirm: React.FC = () => {
   const [time] = useField<string>('time');
   const [month] = useField<string>('month');
   const [week] = useField<string>('week');
+  const [color] = useField<string>('color');
 
   const router = useRouter();
   const [isPending, startTransition] = useTransition();
@@ -154,6 +155,16 @@ export const FormConfirm: React.FC = () => {
           </Label>
           <p>{week.value}</p>
         </div>
+
+        <div className="space-y-1.5">
+          <Label
+            htmlFor={color.id}
+            className="text-sm font-semibold"
+          >
+            色(color)
+          </Label>
+          <p>{color.value}</p>
+        </div>
         {/* === 画面表示 End ===*/}
 
         {/* === Form送信用 Start ===*/}
@@ -221,6 +232,12 @@ export const FormConfirm: React.FC = () => {
           {...getInputProps(week, { type: 'hidden' })}
           key={week.key}
           defaultValue={week.value}
+        />
+
+        <input
+          {...getInputProps(color, { type: 'hidden' })}
+          key={color.key}
+          defaultValue={color.value}
         />
         {/* === Form送信用 End ===*/}
 

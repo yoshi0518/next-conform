@@ -16,6 +16,7 @@ export const Form: React.FC = () => {
       email: 'test@example.com',
       password: 'password',
       privacy: 'privacy data',
+      file: undefined,
     },
     // action実行後の値
     lastResult,
@@ -35,6 +36,7 @@ export const Form: React.FC = () => {
       <form
         {...getFormProps(form)}
         action={dispatch}
+        encType="multipart/form-data"
         className="space-y-4 px-6 py-4"
       >
         <div className="space-y-1.5">
@@ -63,6 +65,21 @@ export const Form: React.FC = () => {
             className="text-sm text-red-500"
           >
             {fields.password.errors}
+          </p>
+        </div>
+
+        <div className="space-y-1.5">
+          <Label htmlFor={fields.file.id}>ファイル</Label>
+          <Input
+            {...getInputProps(fields.file, { type: 'file' })}
+            key={fields.file.key}
+            defaultValue={(lastResult?.initialValue?.file as string) ?? form.initialValue?.file}
+          />
+          <p
+            id={fields.file.errorId}
+            className="text-sm text-red-500"
+          >
+            {fields.file.errors}
           </p>
         </div>
         <Input

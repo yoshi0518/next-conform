@@ -11,9 +11,9 @@ export const action = async (_: unknown, formData: FormData) => {
   // バリデーションエラー
   if (submission.status !== 'success') return submission.reply();
 
-  const { email, password, privacy } = Object.fromEntries(formData);
+  const { email, password, privacy, file } = Object.fromEntries(formData);
   console.log('=== Post Data ===');
-  console.log({ email, password, privacy });
+  console.log({ email, password, privacy, file });
 
   // DB処理
   await wait(2000);
