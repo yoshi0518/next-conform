@@ -15,6 +15,7 @@ export const formSchema = z.object({
   time: z.string().time(),
   month: z.string().refine((value) => !Number.isNaN(new Date(value).getMonth())),
   week: z.string(),
+  color: z.string(),
 });
 
 export type formType = z.infer<typeof formSchema>;

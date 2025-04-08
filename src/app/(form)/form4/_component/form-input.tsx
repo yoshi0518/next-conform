@@ -17,6 +17,7 @@ export const FormInput: React.FC = () => {
   const [time] = useField<string>('time');
   const [month] = useField<string>('month');
   const [week] = useField<string>('week');
+  const [color] = useField<string>('color');
 
   return (
     <div className="w-[360px] rounded-lg border bg-white shadow hover:shadow-md">
@@ -24,6 +25,8 @@ export const FormInput: React.FC = () => {
       <form
         {...getFormProps(form)}
         onSubmit={form.onSubmit}
+        method="post"
+        encType="multipart/form-data"
         className="space-y-4 px-6 py-4"
       >
         <div className="space-y-1.5">
@@ -187,7 +190,7 @@ export const FormInput: React.FC = () => {
         </div>
 
         <div className="space-y-1.5">
-          <Label htmlFor={month.id}>週(week)</Label>
+          <Label htmlFor={week.id}>週(week)</Label>
           <Input
             {...getInputProps(week, { type: 'week' })}
             key={week.key}
@@ -199,6 +202,22 @@ export const FormInput: React.FC = () => {
             className="text-sm text-red-500"
           >
             {week.errors}
+          </p>
+        </div>
+
+        <div className="space-y-1.5">
+          <Label htmlFor={color.id}>色(color)</Label>
+          <Input
+            {...getInputProps(color, { type: 'color' })}
+            key={color.key}
+            defaultValue={color.value ?? color.initialValue}
+            className="w-16"
+          />
+          <p
+            id={color.errorId}
+            className="text-sm text-red-500"
+          >
+            {color.errors}
           </p>
         </div>
 

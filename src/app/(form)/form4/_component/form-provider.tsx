@@ -8,6 +8,18 @@ import { FormProvider as ConformFormProvider, useForm } from '@conform-to/react'
 import { getZodConstraint, parseWithZod } from '@conform-to/zod';
 import { format } from 'date-fns';
 
+// ISO週番号を計算する関数
+// https://programming-cafe.com/programming/javascript-programming/js-references/js-references-1-55/
+const getISOWeekNumber = (date: Date) => {
+  const targetDate = new Date(date.getTime());
+  targetDate.setHours(0, 0, 0, 0);
+  targetDate.setDate(targetDate.getDate() + 4 - (targetDate.getDay() || 7));
+
+  const firstDayOfYear = new Date(targetDate.getFullYear(), 0, 1);
+  const weekNumber = Math.ceil(((targetDate.getTime() - firstDayOfYear.getTime()) / 86400000 + 1) / 7);
+  return weekNumber;
+};
+
 export const FormProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const router = useRouter();
   const [lastResult, dispatch] = useActionState(action, null);
@@ -24,7 +36,8 @@ export const FormProvider: React.FC<{ children: React.ReactNode }> = ({ children
       datetime: format(new Date(), 'yyyy-MM-dd HH:mm:ss'),
       time: format(new Date(), 'HH:mm:ss'),
       month: format(new Date(), 'yyyy-MM'),
-      week: null,
+      week: `${format(new Date(), 'yyyy')}-W${getISOWeekNumber(new Date())}`,
+      color: '#666666',
     },
     // action実行後の値
     lastResult,
