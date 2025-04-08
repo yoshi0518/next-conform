@@ -36,7 +36,6 @@ export const Form: React.FC = () => {
       <form
         {...getFormProps(form)}
         action={dispatch}
-        encType="multipart/form-data"
         className="space-y-4 px-6 py-4"
       >
         <div className="space-y-1.5">
