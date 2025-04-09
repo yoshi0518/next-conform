@@ -16,3 +16,4 @@ export {
 } from './alert-dialog';
 export { Calendar } from './calendar';
 export { Popover, PopoverTrigger, PopoverContent, PopoverAnchor } from './popover';
+export { Textarea } from './textarea';

@@ -25,8 +25,6 @@ export const FormInput: React.FC = () => {
       <form
         {...getFormProps(form)}
         onSubmit={form.onSubmit}
-        method="post"
-        encType="multipart/form-data"
         className="space-y-4 px-6 py-4"
       >
         <div className="space-y-1.5">
