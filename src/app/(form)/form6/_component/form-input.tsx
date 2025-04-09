@@ -4,13 +4,22 @@ import {
   Button,
   Checkbox,
   Label,
+  RadioGroup,
+  RadioGroupItem,
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
+  Switch,
 } from '@/components/ui';
-import { getCheckboxProps, getSelectProps, getSelectTriggerProps } from '@/lib/shadcn';
+import {
+  getCheckboxProps,
+  getRadioGroupProps,
+  getSelectProps,
+  getSelectTriggerProps,
+  getSwitchProps,
+} from '@/lib/shadcn';
 import { getFormProps, useField, useFormMetadata } from '@conform-to/react';
 
 const items = [
@@ -25,6 +34,8 @@ export const FormInput: React.FC = () => {
   const [select] = useField<string>('select');
   const [checkbox1] = useField<string>('checkbox1');
   const [checkbox2] = useField<string>('checkbox2');
+  const [radio] = useField<string>('radio');
+  const [switchValue] = useField<string>('switchValue');
 
   return (
     <div className="w-[360px] rounded-lg border bg-white shadow hover:shadow-md">
@@ -68,6 +79,7 @@ export const FormInput: React.FC = () => {
             <Checkbox
               {...getCheckboxProps(checkbox1)}
               className="mr-1"
+              defaultChecked={checkbox1.value === 'true' || checkbox1.initialValue === 'true'}
             />
             <Label
               htmlFor={checkbox1.id}
@@ -120,6 +132,57 @@ export const FormInput: React.FC = () => {
             className="text-sm text-red-500"
           >
             {checkbox2.errors}
+          </p>
+        </div>
+
+        <div className="space-y-1.5">
+          <Label htmlFor={radio.id}>Radio Group</Label>
+          <RadioGroup
+            {...getRadioGroupProps(radio)}
+            defaultValue={radio.value ?? radio.initialValue}
+          >
+            {items.map((item) => (
+              <div
+                key={item.value}
+                className="flex items-center"
+              >
+                <RadioGroupItem
+                  key={item.value}
+                  id={`${radio.id}-${item.value}`}
+                  value={item.value}
+                  className="mr-1"
+                />
+                <Label
+                  htmlFor={`${radio.id}-${item.value}`}
+                  className="text-sm"
+                >
+                  {item.label}
+                </Label>
+              </div>
+            ))}
+          </RadioGroup>
+          <p
+            id={radio.errorId}
+            className="text-sm text-red-500"
+          >
+            {radio.errors}
+          </p>
+        </div>
+
+        <div className="space-y-1.5">
+          <Label htmlFor={switchValue.id}>
+            <Switch
+              {...getSwitchProps(switchValue)}
+              key={switchValue.id}
+              // defaultValue={switchValue.value ?? switchValue.initialValue}
+            />
+            Switch
+          </Label>
+          <p
+            id={switchValue.errorId}
+            className="text-sm text-red-500"
+          >
+            {switchValue.errors}
           </p>
         </div>
 

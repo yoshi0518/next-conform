@@ -11,9 +11,9 @@ export const action = async (_: unknown, formData: FormData) => {
   // バリデーションエラー
   if (submission.status !== 'success') return submission.reply();
 
-  const { select, checkbox1, checkbox2 } = submission.value;
+  const { select, checkbox1, checkbox2, radio, switchValue } = submission.value;
   console.log('=== Submission Data ===');
-  console.log({ select, checkbox1, checkbox2 });
+  console.log({ select, checkbox1, checkbox2, radio, switchValue });
 
   // DB処理
   await wait(2000);

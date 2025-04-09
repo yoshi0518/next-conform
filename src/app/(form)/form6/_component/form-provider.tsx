@@ -16,6 +16,8 @@ export const FormProvider: React.FC<{ children: React.ReactNode }> = ({ children
       select: 'banana',
       checkbox1: true,
       checkbox2: ['banana'],
+      radio: 'banana',
+      switchValue: false,
     },
     // action実行後の値
     lastResult,

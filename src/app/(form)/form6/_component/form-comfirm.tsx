@@ -13,6 +13,8 @@ export const FormConfirm: React.FC = () => {
   const [select] = useField<string>('select');
   const [checkbox1] = useField<string>('checkbox1');
   const [checkbox2] = useField<string>('checkbox2');
+  const [radio] = useField<string>('radio');
+  const [switchValue] = useField<string>('switchValue');
 
   const router = useRouter();
   const [isPending, startTransition] = useTransition();
@@ -66,6 +68,26 @@ export const FormConfirm: React.FC = () => {
           </Label>
           <p>{checkbox2.value}</p>
         </div>
+
+        <div className="space-y-1.5">
+          <Label
+            htmlFor={radio.id}
+            className="text-sm font-semibold"
+          >
+            Radio Group
+          </Label>
+          <p>{radio.value}</p>
+        </div>
+
+        <div className="space-y-1.5">
+          <Label
+            htmlFor={switchValue.id}
+            className="text-sm font-semibold"
+          >
+            Switch
+          </Label>
+          <p>{switchValue.value ? 'true' : 'false'}</p>
+        </div>
         {/* === 画面表示 End ===*/}
 
         {/* === Form送信用 Start ===*/}
@@ -85,6 +107,18 @@ export const FormConfirm: React.FC = () => {
           {...getInputProps(checkbox2, { type: 'hidden' })}
           key={checkbox2.key}
           defaultValue={checkbox2.value}
+        />
+
+        <input
+          {...getInputProps(radio, { type: 'hidden' })}
+          key={radio.key}
+          defaultValue={radio.value}
+        />
+
+        <input
+          {...getInputProps(switchValue, { type: 'hidden' })}
+          key={switchValue.key}
+          defaultValue={switchValue.value}
         />
         {/* === Form送信用 End ===*/}
 

@@ -30,3 +30,5 @@ export {
   SelectValue,
 } from './select';
 export { Checkbox } from './checkbox';
+export { RadioGroup, RadioGroupItem } from './radio-group';
+export { Switch } from './switch';
