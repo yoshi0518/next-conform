@@ -44,6 +44,14 @@ const Home: React.FC = () => {
           Textarea
         </Link>
       </div>
+      <div>
+        <Link
+          href="/form6"
+          className="text-blue-500 underline underline-offset-2"
+        >
+          Select、Checkbox、Radio、Switch
+        </Link>
+      </div>
     </div>
   );
 };
