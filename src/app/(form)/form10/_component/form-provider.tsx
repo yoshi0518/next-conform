@@ -2,8 +2,8 @@
 
 import { startTransition, useActionState } from 'react';
 import { useRouter } from 'next/navigation';
-import { action } from '@/app/(form)/form2/_action';
-import { formSchema } from '@/app/(form)/form2/_types';
+import { action } from '@/app/(form)/form10/_action';
+import { formSchema } from '@/app/(form)/form10/_types';
 import { FormProvider as ConformFormProvider, useForm } from '@conform-to/react';
 import { getZodConstraint, parseWithZod } from '@conform-to/zod';
 
@@ -13,9 +13,11 @@ export const FormProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const [form] = useForm({
     // 初期値
     defaultValue: {
-      email: 'test@example.com',
-      password: 'password',
-      privacy: 'privacy data',
+      select: 'banana',
+      checkbox1: true,
+      checkbox2: ['banana'],
+      radio: 'banana',
+      switchValue: false,
     },
     // action実行後の値
     lastResult,
@@ -33,10 +35,10 @@ export const FormProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
       switch (formData.get('intent')) {
         case 'confirm':
-          router.push('/form2/confirm');
+          router.push('/form6/confirm');
           break;
         case 'modify':
-          router.push('/form2');
+          router.push('/form6');
           break;
         case 'submit':
           // formタグのactionプロパティにServerActionを指定する方法の代替手段

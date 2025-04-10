@@ -1,4 +1,4 @@
-import { FormConfirm } from '@/app/(form)/form5/_component/form-comfirm';
+import { FormConfirm } from '@/app/(form)/form10/_component/form-comfirm';
 
 const Page: React.FC = () => {
   return (

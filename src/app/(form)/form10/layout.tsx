@@ -1,4 +1,4 @@
-import { FormProvider } from '@/app/(form)/form6/_component/form-provider';
+import { FormProvider } from '@/app/(form)/form10/_component/form-provider';
 
 const Form6Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => <FormProvider>{children}</FormProvider>;
 

@@ -1,20 +1,13 @@
 'use client';
 
 import { useActionState, useState } from 'react';
-import { action } from '@/app/(form)/form6/_action';
-import { formSchema } from '@/app/(form)/form6/_types';
-import { Button, Checkbox, Label } from '@/components/ui';
-import { getCheckboxProps } from '@/lib/shadcn';
+import { action } from '@/app/(form)/form1/_action';
+import { formSchema } from '@/app/(form)/form1/_types';
+import { Button, Input, Label } from '@/components/ui';
 import { cn } from '@/lib/utils';
-import { getFormProps, useForm } from '@conform-to/react';
+import { getFormProps, getInputProps, useForm } from '@conform-to/react';
 import { getZodConstraint, parseWithZod } from '@conform-to/zod';
 import { FaSpinner } from 'react-icons/fa6';
-
-const items = [
-  { value: 'apple', label: 'りんご' },
-  { value: 'banana', label: 'バナナ' },
-  { value: 'orange', label: 'オレンジ' },
-];
 
 export const FormInput: React.FC = () => {
   const [lastResult, dispatch, isPending] = useActionState(action, null);
@@ -22,8 +15,9 @@ export const FormInput: React.FC = () => {
   const [form, fields] = useForm({
     // 初期値
     defaultValue: {
-      checkbox1: 'on',
-      checkbox2: ['banana'],
+      email: 'test@example.com',
+      password: 'password',
+      privacy: 'privacy data',
     },
     // action実行後の値
     lastResult,
@@ -45,62 +39,43 @@ export const FormInput: React.FC = () => {
       >
         {/* === Input Start === */}
         <div className={cn(isConfirm && 'hidden')}>
-          <header className="rounded-t-lg border-b bg-slate-600 p-2 text-white">Form6(Input)</header>
+          <header className="rounded-t-lg border-b bg-slate-600 p-2 text-white">Form1(Input)</header>
           <div className="space-y-4 px-6 py-4">
             <div className="space-y-1.5">
-              <Label htmlFor={fields.checkbox1.id}>Checkbox</Label>
-              <div className="flex items-center">
-                <Label className="text-sm">
-                  <Checkbox
-                    {...getCheckboxProps(fields.checkbox1)}
-                    className="mr-1"
-                    defaultChecked={fields.checkbox1.value === 'on' || fields.checkbox1.initialValue === 'on'}
-                  />
-                  Check
-                </Label>
-              </div>
-
+              <Label htmlFor={fields.email.id}>メールアドレス</Label>
+              <Input
+                {...getInputProps(fields.email, { type: 'email' })}
+                key={fields.email.key}
+                defaultValue={(lastResult?.initialValue?.email as string) ?? form.initialValue?.email}
+              />
               <p
-                id={fields.checkbox1.errorId}
+                id={fields.email.errorId}
                 className="text-sm text-red-500"
               >
-                {fields.checkbox1.errors}
+                {fields.email.errors}
               </p>
             </div>
 
             <div className="space-y-1.5">
-              <Label htmlFor={fields.checkbox2.id}>Checkbox Group</Label>
-              {items.map((item) => (
-                <div
-                  key={item.value}
-                  className="flex items-center"
-                >
-                  <Label className="text-sm">
-                    <Checkbox
-                      {...getCheckboxProps(fields.checkbox2)}
-                      key={item.value}
-                      value={item.value}
-                      onCheckedChange={() => form.validate()}
-                      defaultChecked={
-                        Array.isArray(fields.checkbox2.value)
-                          ? fields.checkbox2.value.includes(item.value)
-                          : Array.isArray(fields.checkbox2.initialValue)
-                            ? fields.checkbox2.initialValue.includes(item.value)
-                            : false
-                      }
-                      className="mr-1"
-                    />
-                    {item.label}
-                  </Label>
-                </div>
-              ))}
+              <Label htmlFor={fields.password.id}>パスワード</Label>
+              <Input
+                {...getInputProps(fields.password, { type: 'password' })}
+                key={fields.password.key}
+                defaultValue={(lastResult?.initialValue?.password as string) ?? form.initialValue?.password}
+              />
               <p
-                id={fields.checkbox2.errorId}
+                id={fields.password.errorId}
                 className="text-sm text-red-500"
               >
-                {fields.checkbox2.errors}
+                {fields.password.errors}
               </p>
             </div>
+
+            <Input
+              {...getInputProps(fields.privacy, { type: 'hidden' })}
+              key={fields.privacy.key}
+              defaultValue={(lastResult?.initialValue?.privacy as string) ?? form.initialValue?.privacy}
+            />
 
             {form.errors?.map((error, index) => (
               <p
@@ -124,16 +99,21 @@ export const FormInput: React.FC = () => {
 
         {/* === Confirm Start === */}
         <div className={cn(!isConfirm && 'hidden')}>
-          <header className="rounded-t-lg border-b bg-slate-600 p-2 text-white">Form6(Confirm)</header>
+          <header className="rounded-t-lg border-b bg-slate-600 p-2 text-white">Form1(Confirm)</header>
           <div className="space-y-4 px-6 py-4">
             <div className="space-y-1.5">
-              <Label className="text-sm font-semibold">Checkbox</Label>
-              <p>{fields.checkbox1.value ? 'on' : 'off'}</p>
+              <Label className="text-sm font-semibold">メールアドレス</Label>
+              <p>{fields.email.value}</p>
             </div>
 
             <div className="space-y-1.5">
-              <Label className="text-sm font-semibold">Checkbox Group</Label>
-              <p>{JSON.stringify(fields.checkbox2.value)}</p>
+              <Label className="text-sm font-semibold">パスワード</Label>
+              <p>{'●'.repeat(fields.password.value?.length ?? 0)}</p>
+            </div>
+
+            <div className="space-y-1.5">
+              <Label className="text-sm font-semibold">プライバシー</Label>
+              <p>{fields.privacy.value}</p>
             </div>
 
             <div className="flex justify-between">

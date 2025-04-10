@@ -1,240 +1,141 @@
 'use client';
 
-import { Button, Input, Label } from '@/components/ui';
-import { getFormProps, getInputProps, useField, useFormMetadata } from '@conform-to/react';
+import { useActionState, useState } from 'react';
+import { action } from '@/app/(form)/form4/_action';
+import { formSchema } from '@/app/(form)/form4/_types';
+import { Button, Label, Textarea } from '@/components/ui';
+import { cn } from '@/lib/utils';
+import { getFormProps, getTextareaProps, useForm } from '@conform-to/react';
+import { getZodConstraint, parseWithZod } from '@conform-to/zod';
+import { FaSpinner } from 'react-icons/fa6';
 
 export const FormInput: React.FC = () => {
-  // FormProvider経由で状態を取得
-  const form = useFormMetadata();
-  const [text] = useField<string>('text');
-  const [email] = useField<string>('email');
-  const [search] = useField<string>('search');
-  const [url] = useField<string>('url');
-  const [tel] = useField<string>('tel');
-  const [range] = useField<number>('range');
-  const [date] = useField<Date>('date');
-  const [datetime] = useField<string>('datetime');
-  const [time] = useField<string>('time');
-  const [month] = useField<string>('month');
-  const [week] = useField<string>('week');
-  const [color] = useField<string>('color');
+  const [lastResult, dispatch, isPending] = useActionState(action, null);
+  const [isConfirm, setIsConfirm] = useState(false);
+  const [form, fields] = useForm({
+    // 初期値
+    defaultValue: {
+      text1: 'あいうえお\nかきくけこ',
+      text2: 'さしすせそ\nたちつてと',
+    },
+    // action実行後の値
+    lastResult,
+    // バリデーションスキーマ
+    onValidate: ({ formData }) => parseWithZod(formData, { schema: formSchema }),
+    // 初回のバリデーション実行タイミング
+    shouldValidate: 'onBlur',
+    // 2回目以降のバリデーション実行タイミング
+    shouldRevalidate: 'onInput',
+    // Zodスキーマをもとに各フィールドのバリデーション属性を自動設定
+    constraint: getZodConstraint(formSchema),
+  });
+  const [count, setCount] = useState<number>(
+    (fields.text2.value ?? fields.text2.initialValue ?? '').replaceAll('\n', '').length,
+  );
 
   return (
     <div className="w-[360px] rounded-lg border bg-white shadow hover:shadow-md">
-      <header className="rounded-t-lg border-b bg-slate-600 p-2 text-white">Form4(Input)</header>
       <form
         {...getFormProps(form)}
-        onSubmit={form.onSubmit}
-        className="space-y-4 px-6 py-4"
+        action={dispatch}
       >
-        <div className="space-y-1.5">
-          <Label htmlFor={text.id}>テキスト(text)</Label>
-          <Input
-            {...getInputProps(text, { type: 'text' })}
-            key={text.key}
-            defaultValue={text.value ?? text.initialValue}
-          />
-          <p
-            id={text.errorId}
-            className="text-sm text-red-500"
-          >
-            {text.errors}
-          </p>
-        </div>
+        {/* === Input Start === */}
+        <div className={cn(isConfirm && 'hidden')}>
+          <header className="rounded-t-lg border-b bg-slate-600 p-2 text-white">Form4(Input)</header>
+          <div className="space-y-4 px-6 py-4">
+            <div className="space-y-1.5">
+              <Label htmlFor={fields.text1.id}>基本</Label>
+              <Textarea
+                {...getTextareaProps(fields.text1)}
+                key={fields.text1.key}
+                defaultValue={(lastResult?.initialValue?.text1 as string) ?? form.initialValue?.text1}
+              />
+              <p
+                id={fields.text1.errorId}
+                className="text-sm text-red-500"
+              >
+                {fields.text1.errors}
+              </p>
+            </div>
 
-        <div className="space-y-1.5">
-          <Label htmlFor={email.id}>メールアドレス(email)</Label>
-          <Input
-            {...getInputProps(email, { type: 'email' })}
-            key={email.key}
-            defaultValue={email.value ?? email.initialValue}
-          />
-          <p
-            id={email.errorId}
-            className="text-sm text-red-500"
-          >
-            {email.errors}
-          </p>
-        </div>
+            <div className="space-y-1.5">
+              <div className="flex justify-between">
+                <Label htmlFor={fields.text2.id}>文字数カウント</Label>
+                <p className="text-sm text-gray-600">{count}/100</p>
+              </div>
+              <Textarea
+                {...getTextareaProps(fields.text2)}
+                key={fields.text2.key}
+                defaultValue={(lastResult?.initialValue?.text2 as string) ?? form.initialValue?.text2}
+                onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
+                  setCount(e.target.value.replaceAll('\n', '').length)
+                }
+              />
+              <p
+                id={fields.text2.errorId}
+                className="text-sm text-red-500"
+              >
+                {fields.text2.errors}
+              </p>
+            </div>
 
-        <div className="space-y-1.5">
-          <Label htmlFor={search.id}>検索(search)</Label>
-          <Input
-            {...getInputProps(search, { type: 'search' })}
-            key={search.key}
-            defaultValue={search.value ?? search.initialValue}
-          />
-          <p
-            id={search.errorId}
-            className="text-sm text-red-500"
-          >
-            {search.errors}
-          </p>
+            {form.errors?.map((error, index) => (
+              <p
+                className="text-sm text-red-500"
+                key={index}
+              >
+                {error}
+              </p>
+            ))}
+            <Button
+              className="w-full cursor-pointer"
+              type="button"
+              disabled={!form.valid}
+              onClick={() => setIsConfirm(true)}
+            >
+              確認
+            </Button>
+          </div>
         </div>
+        {/* === Input End === */}
 
-        <div className="space-y-1.5">
-          <Label htmlFor={url.id}>URL(url)</Label>
-          <Input
-            {...getInputProps(url, { type: 'url' })}
-            key={url.key}
-            defaultValue={url.value ?? url.initialValue}
-          />
-          <p
-            id={url.errorId}
-            className="text-sm text-red-500"
-          >
-            {url.errors}
-          </p>
+        {/* === Confirm Start === */}
+        <div className={cn(!isConfirm && 'hidden')}>
+          <header className="rounded-t-lg border-b bg-slate-600 p-2 text-white">Form4(Confirm)</header>
+          <div className="space-y-4 px-6 py-4">
+            <div className="space-y-1.5">
+              <Label className="text-sm font-semibold">基本</Label>
+              <p>{fields.text1.value}</p>
+            </div>
+
+            <div className="space-y-1.5">
+              <Label className="text-sm font-semibold">文字数カウント</Label>
+              <p>{fields.text2.value}</p>
+            </div>
+
+            <div className="flex justify-between">
+              <Button
+                className="w-36 cursor-pointer"
+                variant="outline"
+                type="button"
+                disabled={isPending}
+                onClick={() => setIsConfirm(false)}
+              >
+                修正
+              </Button>
+
+              <Button
+                className="w-36 cursor-pointer"
+                type="submit"
+                disabled={isPending}
+              >
+                {isPending && <FaSpinner className="animate-spin" />}
+                送信
+              </Button>
+            </div>
+          </div>
         </div>
-
-        <div className="space-y-1.5">
-          <Label htmlFor={tel.id}>TEL(tel)</Label>
-          <Input
-            {...getInputProps(tel, { type: 'tel' })}
-            key={tel.key}
-            defaultValue={tel.value ?? tel.initialValue}
-          />
-          <p
-            id={tel.errorId}
-            className="text-sm text-red-500"
-          >
-            {tel.errors}
-          </p>
-        </div>
-
-        <div className="space-y-1.5">
-          <Label
-            htmlFor={range.id}
-            className="flex justify-between"
-          >
-            範囲(range)
-            <span>{range.value}</span>
-          </Label>
-          <Input
-            {...getInputProps(range, { type: 'range' })}
-            key={range.key}
-            defaultValue={range.value ?? range.initialValue}
-          />
-          <p
-            id={range.errorId}
-            className="text-sm text-red-500"
-          >
-            {range.errors}
-          </p>
-        </div>
-
-        <div className="space-y-1.5">
-          <Label htmlFor={date.id}>日付(date)</Label>
-          <Input
-            {...getInputProps(date, { type: 'date' })}
-            key={date.key}
-            defaultValue={date.value ?? date.initialValue}
-            className="w-min"
-          />
-          <p
-            id={date.errorId}
-            className="text-sm text-red-500"
-          >
-            {date.errors}
-          </p>
-        </div>
-
-        <div className="space-y-1.5">
-          <Label htmlFor={datetime.id}>日時(datetime-local)</Label>
-          <Input
-            {...getInputProps(datetime, { type: 'datetime-local' })}
-            key={datetime.key}
-            defaultValue={datetime.value ?? datetime.initialValue}
-            className="w-min"
-          />
-          <p
-            id={datetime.errorId}
-            className="text-sm text-red-500"
-          >
-            {datetime.errors}
-          </p>
-        </div>
-
-        <div className="space-y-1.5">
-          <Label htmlFor={time.id}>時間(time)</Label>
-          <Input
-            {...getInputProps(time, { type: 'time' })}
-            key={time.key}
-            defaultValue={time.value ?? time.initialValue}
-            className="w-min"
-          />
-          <p
-            id={time.errorId}
-            className="text-sm text-red-500"
-          >
-            {time.errors}
-          </p>
-        </div>
-
-        <div className="space-y-1.5">
-          <Label htmlFor={month.id}>年月(month)</Label>
-          <Input
-            {...getInputProps(month, { type: 'month' })}
-            key={month.key}
-            defaultValue={month.value ?? month.initialValue}
-            className="w-min"
-          />
-          <p
-            id={month.errorId}
-            className="text-sm text-red-500"
-          >
-            {month.errors}
-          </p>
-        </div>
-
-        <div className="space-y-1.5">
-          <Label htmlFor={week.id}>週(week)</Label>
-          <Input
-            {...getInputProps(week, { type: 'week' })}
-            key={week.key}
-            defaultValue={week.value ?? week.initialValue}
-            className="w-min"
-          />
-          <p
-            id={week.errorId}
-            className="text-sm text-red-500"
-          >
-            {week.errors}
-          </p>
-        </div>
-
-        <div className="space-y-1.5">
-          <Label htmlFor={color.id}>色(color)</Label>
-          <Input
-            {...getInputProps(color, { type: 'color' })}
-            key={color.key}
-            defaultValue={color.value ?? color.initialValue}
-            className="w-16"
-          />
-          <p
-            id={color.errorId}
-            className="text-sm text-red-500"
-          >
-            {color.errors}
-          </p>
-        </div>
-
-        {form.errors?.map((error, index) => (
-          <p
-            className="text-sm text-red-500"
-            key={index}
-          >
-            {error}
-          </p>
-        ))}
-        <Button
-          className="w-full cursor-pointer"
-          type="submit"
-          name="intent"
-          value="confirm"
-        >
-          確認
-        </Button>
+        {/* === Confirm End === */}
       </form>
     </div>
   );

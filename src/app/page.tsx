@@ -9,7 +9,7 @@ const Home: React.FC = () => {
           href="/form1"
           className="text-blue-500 underline underline-offset-2"
         >
-          確認画面なし
+          ログイン
         </Link>
       </div>
       <div>
@@ -17,7 +17,7 @@ const Home: React.FC = () => {
           href="/form2"
           className="text-blue-500 underline underline-offset-2"
         >
-          確認画面あり
+          確認ダイアログあり
         </Link>
       </div>
       <div>
@@ -25,7 +25,7 @@ const Home: React.FC = () => {
           href="/form3"
           className="text-blue-500 underline underline-offset-2"
         >
-          確認ダイアログあり
+          Input
         </Link>
       </div>
       <div>
@@ -33,7 +33,7 @@ const Home: React.FC = () => {
           href="/form4"
           className="text-blue-500 underline underline-offset-2"
         >
-          Input
+          Textarea
         </Link>
       </div>
       <div>
@@ -41,12 +41,36 @@ const Home: React.FC = () => {
           href="/form5"
           className="text-blue-500 underline underline-offset-2"
         >
-          Textarea
+          Select
         </Link>
       </div>
       <div>
         <Link
           href="/form6"
+          className="text-blue-500 underline underline-offset-2"
+        >
+          Checkbox
+        </Link>
+      </div>
+      <div>
+        <Link
+          href="/form7"
+          className="text-blue-500 underline underline-offset-2"
+        >
+          Radio
+        </Link>
+      </div>
+      <div>
+        <Link
+          href="/form8"
+          className="text-blue-500 underline underline-offset-2"
+        >
+          Switch
+        </Link>
+      </div>
+      <div>
+        <Link
+          href="/form10"
           className="text-blue-500 underline underline-offset-2"
         >
           Select、Checkbox、Radio、Switch

@@ -1,9 +1,9 @@
-import { Form } from '@/app/(form)/form1/_component/index';
+import { FormInput } from '@/app/(form)/form1/_component/form-input';
 
 const Page: React.FC = () => {
   return (
     <main>
-      <Form />
+      <FormInput />
     </main>
   );
 };

@@ -1,10 +1,10 @@
 'use client';
 
 import { useActionState, useState } from 'react';
-import { action } from '@/app/(form)/form6/_action';
-import { formSchema } from '@/app/(form)/form6/_types';
-import { Button, Checkbox, Label } from '@/components/ui';
-import { getCheckboxProps } from '@/lib/shadcn';
+import { action } from '@/app/(form)/form7/_action';
+import { formSchema } from '@/app/(form)/form7/_types';
+import { Button, Label, RadioGroup, RadioGroupItem } from '@/components/ui';
+import { getRadioGroupProps } from '@/lib/shadcn';
 import { cn } from '@/lib/utils';
 import { getFormProps, useForm } from '@conform-to/react';
 import { getZodConstraint, parseWithZod } from '@conform-to/zod';
@@ -22,8 +22,7 @@ export const FormInput: React.FC = () => {
   const [form, fields] = useForm({
     // 初期値
     defaultValue: {
-      checkbox1: 'on',
-      checkbox2: ['banana'],
+      radio: 'banana',
     },
     // action実行後の値
     lastResult,
@@ -45,60 +44,36 @@ export const FormInput: React.FC = () => {
       >
         {/* === Input Start === */}
         <div className={cn(isConfirm && 'hidden')}>
-          <header className="rounded-t-lg border-b bg-slate-600 p-2 text-white">Form6(Input)</header>
+          <header className="rounded-t-lg border-b bg-slate-600 p-2 text-white">Form7(Input)</header>
           <div className="space-y-4 px-6 py-4">
             <div className="space-y-1.5">
-              <Label htmlFor={fields.checkbox1.id}>Checkbox</Label>
-              <div className="flex items-center">
-                <Label className="text-sm">
-                  <Checkbox
-                    {...getCheckboxProps(fields.checkbox1)}
-                    className="mr-1"
-                    defaultChecked={fields.checkbox1.value === 'on' || fields.checkbox1.initialValue === 'on'}
-                  />
-                  Check
-                </Label>
-              </div>
+              <Label htmlFor={fields.radio.id}>Radio Group</Label>
+              <RadioGroup
+                {...getRadioGroupProps(fields.radio)}
+                defaultValue={fields.radio.value ?? fields.radio.initialValue}
+              >
+                {items.map((item) => (
+                  <div
+                    key={item.value}
+                    className="flex items-center"
+                  >
+                    <Label className="text-sm">
+                      <RadioGroupItem
+                        key={item.value}
+                        value={item.value}
+                        className="mr-1"
+                      />
+                      {item.label}
+                    </Label>
+                  </div>
+                ))}
+              </RadioGroup>
 
               <p
-                id={fields.checkbox1.errorId}
+                id={fields.radio.errorId}
                 className="text-sm text-red-500"
               >
-                {fields.checkbox1.errors}
-              </p>
-            </div>
-
-            <div className="space-y-1.5">
-              <Label htmlFor={fields.checkbox2.id}>Checkbox Group</Label>
-              {items.map((item) => (
-                <div
-                  key={item.value}
-                  className="flex items-center"
-                >
-                  <Label className="text-sm">
-                    <Checkbox
-                      {...getCheckboxProps(fields.checkbox2)}
-                      key={item.value}
-                      value={item.value}
-                      onCheckedChange={() => form.validate()}
-                      defaultChecked={
-                        Array.isArray(fields.checkbox2.value)
-                          ? fields.checkbox2.value.includes(item.value)
-                          : Array.isArray(fields.checkbox2.initialValue)
-                            ? fields.checkbox2.initialValue.includes(item.value)
-                            : false
-                      }
-                      className="mr-1"
-                    />
-                    {item.label}
-                  </Label>
-                </div>
-              ))}
-              <p
-                id={fields.checkbox2.errorId}
-                className="text-sm text-red-500"
-              >
-                {fields.checkbox2.errors}
+                {fields.radio.errors}
               </p>
             </div>
 
@@ -124,16 +99,11 @@ export const FormInput: React.FC = () => {
 
         {/* === Confirm Start === */}
         <div className={cn(!isConfirm && 'hidden')}>
-          <header className="rounded-t-lg border-b bg-slate-600 p-2 text-white">Form6(Confirm)</header>
+          <header className="rounded-t-lg border-b bg-slate-600 p-2 text-white">Form7(Confirm)</header>
           <div className="space-y-4 px-6 py-4">
             <div className="space-y-1.5">
-              <Label className="text-sm font-semibold">Checkbox</Label>
-              <p>{fields.checkbox1.value ? 'on' : 'off'}</p>
-            </div>
-
-            <div className="space-y-1.5">
-              <Label className="text-sm font-semibold">Checkbox Group</Label>
-              <p>{JSON.stringify(fields.checkbox2.value)}</p>
+              <Label className="text-sm font-semibold">Radio Group</Label>
+              <p>{fields.radio.value}</p>
             </div>
 
             <div className="flex justify-between">
