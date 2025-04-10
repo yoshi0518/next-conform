@@ -1,9 +1,9 @@
-import { FormConfirm } from '@/app/(form)/form2/_component/form-confirm';
+import { FormInput } from './_component/form-input';
 
 const Page: React.FC = () => {
   return (
     <main>
-      <FormConfirm />
+      <FormInput />
     </main>
   );
 };
