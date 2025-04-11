@@ -70,10 +70,10 @@ const Home: React.FC = () => {
       </div>
       <div>
         <Link
-          href="/form10"
+          href="/form9"
           className="text-blue-500 underline underline-offset-2"
         >
-          Select、Checkbox、Radio、Switch
+          Dynamic Data
         </Link>
       </div>
     </div>

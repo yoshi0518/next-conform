@@ -32,3 +32,4 @@ export {
 export { Checkbox } from './checkbox';
 export { RadioGroup, RadioGroupItem } from './radio-group';
 export { Switch } from './switch';
+export { Table, TableHeader, TableBody, TableFooter, TableHead, TableRow, TableCell, TableCaption } from './table';
