@@ -68,6 +68,14 @@ const Home: React.FC = () => {
           Switch
         </Link>
       </div>
+      <div>
+        <Link
+          href="/form9"
+          className="text-blue-500 underline underline-offset-2"
+        >
+          Dynamic Data
+        </Link>
+      </div>
     </div>
   );
 };
