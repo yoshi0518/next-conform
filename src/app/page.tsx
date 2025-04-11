@@ -68,14 +68,6 @@ const Home: React.FC = () => {
           Switch
         </Link>
       </div>
-      <div>
-        <Link
-          href="/form10"
-          className="text-blue-500 underline underline-offset-2"
-        >
-          Select、Checkbox、Radio、Switch
-        </Link>
-      </div>
     </div>
   );
 };
