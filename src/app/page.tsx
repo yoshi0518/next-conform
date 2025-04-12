@@ -76,6 +76,14 @@ const Home: React.FC = () => {
           Dynamic Data
         </Link>
       </div>
+      <div>
+        <Link
+          href="/form10"
+          className="text-blue-500 underline underline-offset-2"
+        >
+          郵便番号
+        </Link>
+      </div>
     </div>
   );
 };
