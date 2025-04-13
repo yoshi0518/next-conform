@@ -7,6 +7,9 @@ settings:
 importers:
   .:
     dependencies:
+      '@cloudflare/wrangler':
+        specifier: ^1.21.0
+        version: 1.21.0
       '@conform-to/react':
         specifier: ^1.3.0
         version: 1.3.0(react@18.3.1)
@@ -1379,6 +1382,14 @@ packages:
     engines: { node: '>=16' }
     cpu: [x64]
     os: [win32]
+
+  '@cloudflare/wrangler@1.21.0':
+    resolution:
+      { integrity: sha512-rsF1cGQT+CcTbk6d/s7c/CWOnKAtKi26LSkSbjDPnXsaEMso3RGRPWdStav/xmMLbvKOeDdtL8NDoxrtimrpQg== }
+    deprecated:
+      This package is for Wrangler v1.x and is no longer supported. Please visit https://www.npmjs.com/package/wrangler
+      for Wrangler v2+.
+    hasBin: true
 
   '@conform-to/dom@1.3.0':
     resolution:
@@ -4387,6 +4398,10 @@ packages:
       { integrity: sha512-RE3mdQ7P3FRSe7eqCWoeQ/Z9QXrtniSjp1wUjt5nRC3WIpz5rSCve6o3fsZ2aCpJtrZjSZgjwXAoTO5k4tEI0w== }
     engines: { node: '>=4' }
 
+  axios@0.21.4:
+    resolution:
+      { integrity: sha512-ut5vewkiu8jjGBdqpM44XxjuCjq9LAKeHVmoVfHVzy8eHgxxq8SbAVQNovDA8mVi05kP0Ea/n/UzcSHcTJQfNg== }
+
   axobject-query@4.1.0:
     resolution:
       { integrity: sha512-qIj0G9wZbMGNLjLmg1PT6v2mE9AH2zlnADJD/2tC6E00hgmhUOfEB6greHPAfLRSufHqROIUTkw6E+M3lH0PTQ== }
@@ -4622,6 +4637,11 @@ packages:
     resolution:
       { integrity: sha512-7VT13fmjotKpGipCW9JEQAusEPE+Ei8nl6/g4FBAmIm0GOOLMua9NDDo/DWp0ZAxCr3cPq5ZpBqmPAQgDda2Pw== }
     engines: { node: '>= 8.10.0' }
+
+  chownr@2.0.0:
+    resolution:
+      { integrity: sha512-bIomtDF5KGpdogkLd9VspvFzk9KfpyyGlS8YFVZl7TGPBHL5snIOnxeshwVgPteQ9b4Eydl+pVbIyE1DcvCWgQ== }
+    engines: { node: '>=10' }
 
   chromatic@11.25.2:
     resolution:
@@ -5580,6 +5600,16 @@ packages:
     resolution:
       { integrity: sha512-AiwGJM8YcNOaobumgtng+6NHuOqC3A7MixFeDafM3X9cIUM+xUXoS5Vfgf+OihAYe20fxqNM9yPBXJzRtZ/4eA== }
 
+  follow-redirects@1.15.9:
+    resolution:
+      { integrity: sha512-gew4GsXizNgdoRyqmyfMHyAmXsZDk6mHkSxZFCzW9gwlbtOW44CDtYavM+y+72qD/Vq2l550kMF52DT8fOLJqQ== }
+    engines: { node: '>=4.0' }
+    peerDependencies:
+      debug: '*'
+    peerDependenciesMeta:
+      debug:
+        optional: true
+
   for-each@0.3.5:
     resolution:
       { integrity: sha512-dKx12eRCVIzqCxFGplyFKJMPvLEWgmNtUrpTiJIR5u97zEhRG8ySrtboPHZXx7daLxQVrl643cTzbab2tkQjxg== }
@@ -5617,6 +5647,11 @@ packages:
     resolution:
       { integrity: sha512-oRXApq54ETRj4eMiFzGnHWGy+zo5raudjuxN0b8H7s/RU2oW0Wvsx9O0ACRN/kRq9E8Vu/ReskGB5o3ji+FzHQ== }
     engines: { node: '>=12' }
+
+  fs-minipass@2.1.0:
+    resolution:
+      { integrity: sha512-V/JgOLFCS+R6Vcq0slCuaeWEdNC3ouDlJMNIsacH2VtALiu9mV4LPrHc5cDl8k5aw6J8jwgWWpiTo5RYhmIzvg== }
+    engines: { node: '>= 8' }
 
   fs-monkey@1.0.6:
     resolution:
@@ -6621,15 +6656,30 @@ packages:
     resolution:
       { integrity: sha512-2yyAR8qBkN3YuheJanUpWC5U3bb5osDywNB8RzDVlDwDHbocAJveqqj1u8+SVD7jkWT4yvsHCpWqqWqAxb0zCA== }
 
+  minipass@3.3.6:
+    resolution:
+      { integrity: sha512-DxiNidxSEK+tHG6zOIklvNOwm3hvCrbUrdtzY74U6HKTJxvIDfOUL5W5P2Ghd3DTkhhKPYGqeNUIh5qcM4YBfw== }
+    engines: { node: '>=8' }
+
   minipass@4.2.8:
     resolution:
       { integrity: sha512-fNzuVyifolSLFL4NzpF+wEF4qrgqaaKX0haXPQEdQ7NKAN+WecoKMHV09YcuL/DHxrUsYQOK3MiuDf7Ip2OXfQ== }
+    engines: { node: '>=8' }
+
+  minipass@5.0.0:
+    resolution:
+      { integrity: sha512-3FnjYuehv9k6ovOEbyOswadCDPX1piCfhV8ncmYtHOjuPwylVWsghTLo7rabjC3Rx5xD4HDx8Wm1xnMF7S5qFQ== }
     engines: { node: '>=8' }
 
   minipass@7.1.2:
     resolution:
       { integrity: sha512-qOOzS1cBTWYF4BH8fVePDBOO9iptMnGUEZwNc/cMWnTV2nVLZ7VoNWEPHkYczZA0pdoA7dl6e7FL659nX9S2aw== }
     engines: { node: '>=16 || 14 >=14.17' }
+
+  minizlib@2.1.2:
+    resolution:
+      { integrity: sha512-bAxsR8BVfj60DWXHE3u30oHzfl4G7khkSuPW+qvpd7jFRHm7dLxOjUk1EHACJ/hxLY8phGJ0YhYHZo7jil7Qdg== }
+    engines: { node: '>= 8' }
 
   mkdirp@1.0.4:
     resolution:
@@ -7966,6 +8016,11 @@ packages:
       { integrity: sha512-GNzQvQTOIP6RyTfE2Qxb8ZVlNmw0n88vp1szwWRimP02mnTsx3Wtn5qRdqY9w2XduFNUgvOwhNnQsjwCp+kqaQ== }
     engines: { node: '>=6' }
 
+  tar@6.2.1:
+    resolution:
+      { integrity: sha512-DZ4yORTwrbTj/7MZYq2w+/ZFdI6OZ/f9SFHR+71gIVUZhOQPHzVCLpvRnPgyaMpfWxxk/4ONva3GQSyNIKRv6A== }
+    engines: { node: '>=10' }
+
   terser-webpack-plugin@5.3.11:
     resolution:
       { integrity: sha512-RVCsMfuD0+cTt3EwX8hSl2Ks56EbFHWmhluwcqoPKtBnfjiT6olaq7PRIRfhyU8nnC2MrnDrBLfrD/RGE+cVXQ== }
@@ -8575,6 +8630,10 @@ packages:
   yallist@3.1.1:
     resolution:
       { integrity: sha512-a4UGQaWPH59mOXUYnAG2ewncQS4i4F43Tv3JoAM+s2VDAmS9NsK8GpDMLrCHPksFT7h3K6TOoUNn2pb7RoXx4g== }
+
+  yallist@4.0.0:
+    resolution:
+      { integrity: sha512-3wdGidZyq5PB084XLES5TpOSRA3wjXAlIWMhum2kRcv/41Sn2emQ0dycQW4uZXLejwKvg6EsvbdlVL+FYEct7A== }
 
   yaml@1.10.2:
     resolution:
@@ -10444,6 +10503,14 @@ snapshots:
 
   '@cloudflare/workerd-windows-64@1.20250409.0':
     optional: true
+
+  '@cloudflare/wrangler@1.21.0':
+    dependencies:
+      axios: 0.21.4
+      rimraf: 3.0.2
+      tar: 6.2.1
+    transitivePeerDependencies:
+      - debug
 
   '@conform-to/dom@1.3.0': {}
 
@@ -13130,6 +13197,12 @@ snapshots:
 
   axe-core@4.10.2: {}
 
+  axios@0.21.4:
+    dependencies:
+      follow-redirects: 1.15.9
+    transitivePeerDependencies:
+      - debug
+
   axobject-query@4.1.0: {}
 
   babel-loader@9.2.1(@babel/core@7.26.9)(webpack@5.98.0(esbuild@0.24.2)):
@@ -13358,6 +13431,8 @@ snapshots:
       readdirp: 3.6.0
     optionalDependencies:
       fsevents: 2.3.3
+
+  chownr@2.0.0: {}
 
   chromatic@11.25.2: {}
 
@@ -14356,6 +14431,8 @@ snapshots:
 
   flatted@3.3.2: {}
 
+  follow-redirects@1.15.9: {}
+
   for-each@0.3.5:
     dependencies:
       is-callable: 1.2.7
@@ -14398,6 +14475,10 @@ snapshots:
       graceful-fs: 4.2.11
       jsonfile: 6.1.0
       universalify: 2.0.1
+
+  fs-minipass@2.1.0:
+    dependencies:
+      minipass: 3.3.6
 
   fs-monkey@1.0.6: {}
 
@@ -15179,9 +15260,20 @@ snapshots:
 
   minimist@1.2.8: {}
 
+  minipass@3.3.6:
+    dependencies:
+      yallist: 4.0.0
+
   minipass@4.2.8: {}
 
+  minipass@5.0.0: {}
+
   minipass@7.1.2: {}
+
+  minizlib@2.1.2:
+    dependencies:
+      minipass: 3.3.6
+      yallist: 4.0.0
 
   mkdirp@1.0.4: {}
 
@@ -16376,6 +16468,15 @@ snapshots:
 
   tapable@2.2.1: {}
 
+  tar@6.2.1:
+    dependencies:
+      chownr: 2.0.0
+      fs-minipass: 2.1.0
+      minipass: 5.0.0
+      minizlib: 2.1.2
+      mkdirp: 1.0.4
+      yallist: 4.0.0
+
   terser-webpack-plugin@5.3.11(esbuild@0.24.2)(webpack@5.98.0(esbuild@0.24.2)):
     dependencies:
       '@jridgewell/trace-mapping': 0.3.25
@@ -16901,6 +17002,8 @@ snapshots:
   xtend@4.0.2: {}
 
   yallist@3.1.1: {}
+
+  yallist@4.0.0: {}
 
   yaml@1.10.2: {}
 
